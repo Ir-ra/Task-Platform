@@ -28,10 +28,10 @@ export const useSignUp = () => {
             //upload user thumbnail
             const uploadPath = `thumbnails/${response.user.uid}/${thumbnail.name}`
             const img = await projectStorage.ref(uploadPath).put(thumbnail)
-            const imgURL = await img.ref.getDownloadURL()
+            const imgUrl = await img.ref.getDownloadURL()
 
             //upd profile. add displayName
-            await response.user.updateProfile({ displayName: displayName, photoURL: imgURL })
+            await response.user.updateProfile({ displayName, photoURL: imgUrl })
 
             //dispatch login action
             dispatch({ type: 'LOGIN', payload: response.user })

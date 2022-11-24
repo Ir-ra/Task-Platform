@@ -14,7 +14,7 @@ function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        signUp(email, password, displayName)
+        signUp(email, password, displayName, thumbnail)
     }
 
     const handleFileChange = (e) => {
@@ -82,14 +82,13 @@ function Signup() {
                         required
                         type='file'
                         onChange={handleFileChange}
-                    // value={thumbnail}
                     />
                     {thumbnailError && <div className='error'>{thumbnailError}</div>}
                 </label>
 
                 {!isPending && <button className='btn'>Sign Up</button>}
                 {isPending && <button className='btn' disabled>...</button>}
-                {error && <p>{error}</p>}
+                {error && <div className='error'>{error}</div>}
             </form>
         </div>
     );
