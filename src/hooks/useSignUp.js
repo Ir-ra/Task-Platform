@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import {projectAuth} from '../firebase/config'
+import { projectAuth, projectStorage } from '../firebase/config'
 import { useAuthContext } from "./useAuthContext"
 
 export const useSignUp = () => {
@@ -10,9 +10,9 @@ export const useSignUp = () => {
     // const [data, setData] = useState(null)
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState(null)
-    const {dispatch} = useAuthContext()
+    const { dispatch } = useAuthContext()
 
-    const signUp = async(email, password, displayName) => {
+    const signUp = async (email, password, displayName, thumbnail) => {
         setError(null)
         setIsPending(true)
 
@@ -20,25 +20,30 @@ export const useSignUp = () => {
             //sign up user
             const response = await projectAuth.createUserWithEmailAndPassword(email, password)
             console.log(response.user) // це буде щойно створений юзер
-       
-            if(!response){
+
+            if (!response) {
                 throw new Error('Could not complete signup')
             }
 
-            //upd add displayName
-            await response.user.updateProfile({displayName: displayName})
+            //upload user thumbnail
+            const uploadPath = `thumbnails/${response.user.uid}/${thumbnail.name}`
+            const img = await projectStorage.ref(uploadPath).put(thumbnail)
+            const imgURL = await img.ref.getDownloadURL()
+
+            //upd profile. add displayName
+            await response.user.updateProfile({ displayName: displayName, photoURL: imgURL })
 
             //dispatch login action
-            dispatch({type: 'LOGIN', payload: response.user})
+            dispatch({ type: 'LOGIN', payload: response.user })
 
             //update state 
-            if(!isCancelled){
+            if (!isCancelled) {
                 setIsPending(false)
-            setError(null)
+                setError(null)
             }
 
         } catch (error) {
-            if(!isCancelled){
+            if (!isCancelled) {
                 console.log(error.message)
                 setError(error.message)
                 setIsPending(false)
@@ -47,9 +52,9 @@ export const useSignUp = () => {
     }
 
     //CLEAN up function
-    useEffect(()=>{
+    useEffect(() => {
         return () => setIsCancelled(true)
-    },[])
+    }, [])
 
-    return {error, isPending, signUp}
+    return { error, isPending, signUp }
 }
