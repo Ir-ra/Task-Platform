@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import {projectAuth} from '../firebase/config'
+import {projectAuth, projectFirestore} from '../firebase/config'
 import { useAuthContext } from "./useAuthContext"
 
 export const useLogIn = () => {
@@ -15,17 +15,23 @@ export const useLogIn = () => {
         setError(null)
         setIsPending(true)
 
-        //sign user OUT
+        //sign user in
         try {
             const res = await projectAuth.signInWithEmailAndPassword(email, password)
 
-            //dispatcj logout action
+            //update online status
+            await projectFirestore.collection('USERs')
+            .doc(res.user.uid).update({online: true})
+
+            //dispatch login action
             dispatch({type: 'LOGIN', payload: res.user})
+
+           
 
             //update state 
             if(!isCancelled){
                 setIsPending(false)
-            setError(null)
+                setError(null)
             }
             
         } catch (error) {
