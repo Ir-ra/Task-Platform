@@ -6,7 +6,7 @@ import { useLogout } from '../hooks/useLogout'
 
 function Navbar() {
     const { user } = useAuthContext()
-    const { logOut } = useLogout()
+    const { logOut, isPending } = useLogout()
     
     return (
         <div className='navbar'>
@@ -25,7 +25,8 @@ function Navbar() {
                 {user && (
                     <>
                         <li>
-                            <button className='btn' onClick={logOut}>Logout</button>
+                            {!isPending && <button className='btn' onClick={logOut}>Logout</button>}
+                            {isPending && <button className='btn' disabled>Logging out...</button>}
                         </li>
                     </>
                 )}
