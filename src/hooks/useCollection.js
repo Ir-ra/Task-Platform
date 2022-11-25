@@ -1,4 +1,4 @@
-//for Real Time Data, 
+//for Real Time Data
 
 import { projectFirestore } from "../firebase/config";
 import { useEffect, useRef, useState } from "react";
@@ -26,7 +26,7 @@ export const useCollection = (collectioN, _query, _orderBY) => {
 
       let results = []
       snapshot.docs.forEach(doc => {
-        results.push({ ...doc.data(), id: doc.id }) //doc -> ({name, amount, uid})
+        results.push({ ...doc.data(), id: doc.id }) //doc -> 
       })
 
       //update state

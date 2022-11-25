@@ -37,7 +37,7 @@ function Login() {
                 />
             </label>
 
-            {error && <p>{error}</p>}
+            {error && <div className='error'>{error}</div>}
             {!isPending && <button className='btn'>Login</button>}
             {isPending && <button className='btn' disabled>...</button>}
         </form>

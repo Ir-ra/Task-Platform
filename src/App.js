@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { useAuthContext } from './hooks/useAuthContext';
 import { BrowserRouter } from 'react-router-dom'
+import OnlineUsers from './components/OnlineUsers';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
               element={user ? <Navigate to='/'/> : <Signup />} />
             </Routes>
           </div>
+          {user && <OnlineUsers/>}
         </BrowserRouter>
       )}
     </div>
