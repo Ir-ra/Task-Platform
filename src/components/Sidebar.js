@@ -8,7 +8,7 @@ import Avatar from './Avatar';
 function Sidebar() {
 
     const {user} = useAuthContext()
-    console.log(user) //here is displayMane
+    // console.log(user) //here is displayMane
 
     return (
         <div className='sidebar'>
