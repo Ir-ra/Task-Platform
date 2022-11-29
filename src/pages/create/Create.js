@@ -61,7 +61,7 @@ function Create() {
             }
         })
 
-        //making project document
+        //------making project document-------
         const project = {
             name,
             details,
@@ -75,10 +75,10 @@ function Create() {
 
         // console.log(name, details, dueDate, category.value, assignedUsers)
         // ====>>>>>    console.log(project)
-        
+
         //adding project to FB
-        await addDocument( project )
-        if(!response.error) {
+        await addDocument(project)
+        if (!response.error) {
             navigate('/')
         }
 
