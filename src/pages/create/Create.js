@@ -20,13 +20,26 @@ function Create() {
     const [dueDate, setDueDate] = useState('')
     const [category, setCategory] = useState('')
     const [assignedUsers, setAssignedUsers] = useState([])
+    const [formError, setFormError] = useState(null)
 
     // const {addDocument} = useFirestore()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // addDocument({name, details, dueDate})
-        console.log(name, details, dueDate, category.value, assignedUsers)
+        //we need to reset Error to null EVERY time we Submit
+        setFormError(null)
+
+        if (!category) {
+            setFormError('Please select category')
+            return
+        }
+        if (assignedUsers.length < 1) {
+            setFormError('Please assign to project at least 1 user')
+            return
+        }
+
+            // addDocument({name, details, dueDate})
+            console.log(name, details, dueDate, category.value, assignedUsers)
     };
     //we are going to map throu documents an make new arr based on arr of users
     useEffect(() => {
@@ -91,6 +104,7 @@ function Create() {
                 </label>
 
                 <button className='btn'>Add Project</button>
+                {formError && <p className='error'>{formError}</p>}
             </form>
         </div>
     );
