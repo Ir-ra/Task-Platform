@@ -2,6 +2,7 @@
 import { useEffect, useState, useReducer } from "react"
 import {projectFirestore, timestamp} from '../firebase/config' //для взаємодіїї з датабазою проекту
 
+//response object
 let initialState = {
     document: null,
     isPending: false,

@@ -1,7 +1,11 @@
 import './Create.css'
 import { useEffect, useState } from 'react'
 import Select from 'react-select';
-import { useCollection } from '../../hooks/useCollection'
+import { useCollection } from '../../hooks/useCollection';
+import { timestamp } from '../../firebase/config';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useFirestore } from '../../hooks/useFirestore';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
     { value: 'development', label: 'Development' },
@@ -11,7 +15,11 @@ const categories = [
 ];
 
 function Create() {
+    const navigate = useNavigate()
     const { documents } = useCollection('USERs')
+    const { user } = useAuthContext()
+    //записуємо нову коллекцію, у яку будуть зберігатись проекти
+    const { addDocument, response } = useFirestore('PROJECTs')
 
     const [users, setUsers] = useState([])
 
@@ -22,9 +30,9 @@ function Create() {
     const [assignedUsers, setAssignedUsers] = useState([])
     const [formError, setFormError] = useState(null)
 
-    // const {addDocument} = useFirestore()
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
         //we need to reset Error to null EVERY time we Submit
         setFormError(null)
@@ -38,9 +46,44 @@ function Create() {
             return
         }
 
-            // addDocument({name, details, dueDate})
-            console.log(name, details, dueDate, category.value, assignedUsers)
+        //object which stored info about the user who is currently logged, the one who created this project
+        const createdBy = {
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            id: user.uid
+        };
+
+        const assignedUsersList = assignedUsers.map((U) => {
+            return {
+                displayName: U.value.displayName,
+                photoURL: U.value.photoURL,
+                id: U.value.id
+            }
+        })
+
+        //making project document
+        const project = {
+            name,
+            details,
+            category: category.value,
+            dueDate: timestamp.fromDate(new Date(dueDate)),
+            comment: [],
+            createdBy,
+            assignedUsersList
+        }
+
+
+        // console.log(name, details, dueDate, category.value, assignedUsers)
+        // ====>>>>>    console.log(project)
+        
+        //adding project to FB
+        await addDocument( project )
+        if(!response.error) {
+            navigate('/')
+        }
+
     };
+
     //we are going to map throu documents an make new arr based on arr of users
     useEffect(() => {
         if (documents) {
@@ -50,6 +93,7 @@ function Create() {
             setUsers(options)
         }
     }, [documents])
+
 
 
     return (
