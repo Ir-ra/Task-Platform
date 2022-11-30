@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useDocument } from '../../hooks/useDocument';
 import './ProjectDetails.css'
+import ProjectSummary from './ProjectSummary';
 
 function ProjectDetails() {
     const { id } = useParams()  //бо path='/projects/:id' 
@@ -15,8 +16,7 @@ function ProjectDetails() {
 
     return (
         <div className='project-details'>
-            <h1>{document.name}</h1>  {/*like project document fronm Create*/}
-
+            <ProjectSummary project={document} />
         </div>
     );
 }
