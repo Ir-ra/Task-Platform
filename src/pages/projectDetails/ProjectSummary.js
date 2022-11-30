@@ -1,8 +1,21 @@
 import Avatar from "../../components/Avatar";
+import { useFirestore } from '../../hooks/useFirestore';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import {useNavigate} from 'react-router-dom'
+
 function ProjectSummary({ project }) {
+    const { deleteDocument } = useFirestore('PROJECTs');
+    const { user } = useAuthContext();
+    const navigate = useNavigate()
+
+    const handleClick = (e) => {
+        deleteDocument(project.id)
+        navigate('/')
+    }
     return (
         <div>
             <div className="project-summary">
+                <p>By {project.createdBy.displayName}</p>
                 <h2 className="project-title">{project.name}</h2>  {/*like project document fronm Create*/}
                 <p className="due-date">
                     Project due by {project.dueDate.toDate().toDateString()}
@@ -10,17 +23,21 @@ function ProjectSummary({ project }) {
                 <p className="details">
                     {project.details}
                 </p>
-                <h4>Project is assigned to:
-                    <div className="assigned-users">
-                        {project.assignedUsersList.map(user => (
-                            <div key={user.id}>
-                                <Avatar src={user.photoURL} />
-                                <p>{user.displayName}</p>
-                            </div>
-                        ))}
-                    </div>
-                </h4>
+                <h4>Project is assigned to:</h4>
+                <div className="assigned-users">
+                    {project.assignedUsersList.map(user => (
+                        <div key={user.id}>
+                            <Avatar src={user.photoURL} />
+                            <p>{user.displayName}</p>
+                        </div>
+                    ))}
+                </div>
+
+
             </div>
+            {user.uid === project.createdBy.id && (
+                <button className="btn" onClick={handleClick}>Mark as complete</button>
+            )}
         </div>
     );
 }
