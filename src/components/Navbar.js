@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useLogout } from '../hooks/useLogout'
 
+import { NavLink } from 'react-router-dom';
+import DashboardIcon from '../assets/dashboard_icon.svg';
+import AddIcon from '../assets/add_icon.svg';
+
 function Navbar() {
     const { user } = useAuthContext()
     const { logOut, isPending } = useLogout()
@@ -24,6 +28,16 @@ function Navbar() {
 
                 {user && (
                     <>
+                    <div className='sidebar-links'>
+                            <NavLink  to='/'>
+                                <img src={DashboardIcon} alt='dashboard icon' />
+                            </NavLink>
+                        
+                            <NavLink to='/create'>
+                                <img src={AddIcon} alt='add icon' />
+                            </NavLink>
+                        </div>
+
                         <li>
                             {!isPending && <button className='btn' onClick={logOut}>Logout</button>}
                             {isPending && <button className='btn' disabled>Logging out...</button>}

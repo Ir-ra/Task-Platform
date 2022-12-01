@@ -8,7 +8,7 @@ function OnlineUsers() {
 // console.log(documents)
     return (
         <div className='user-list'>
-            <h2>all users</h2>
+            <h2>All users</h2>
             {error && <div className='error'>{error}</div>}
             {documents && documents.map(user => (
                 <div key={user.id} className='user-list-item'>

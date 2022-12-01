@@ -36,3 +36,9 @@
     width: 30px;
     height: 30px;
   }
+
+  .project-list .category {
+    display: flex;
+    align-content: flex-end;
+    color: var(--primary-color);
+  }
