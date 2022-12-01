@@ -1,5 +1,5 @@
 import './Navbar.css'
-import Temple from '../assets/temple.svg'
+import Triangle from '../assets/triangle.svg'
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useLogout } from '../hooks/useLogout'
@@ -12,7 +12,7 @@ function Navbar() {
         <div className='navbar'>
             <ul>
                 <li className='logo'>
-                    <img src={Temple} alt='logo' />
+                    <img src={Triangle} alt='logo' />
                     <span>The Platform</span>
                 </li>
                 {!user && (
