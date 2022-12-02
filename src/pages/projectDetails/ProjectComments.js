@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { timestamp } from '../../firebase/config'
 import { useFirestore } from '../../hooks/useFirestore'
+import { useTheme } from '../../hooks/useTheme';
 import Avatar from '../../components/Avatar';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
@@ -9,6 +10,7 @@ function ProjectComments({ project }) {
     const [newComment, setNewComment] = useState('')
     const { user } = useAuthContext()
     const { updateDocument, response } = useFirestore('PROJECTs')
+    const { mode } = useTheme()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -29,7 +31,7 @@ function ProjectComments({ project }) {
     }
 
     return (
-        <div className='project-comments'>
+        <div className={`project-comments ${mode}`}>
             <h4>Project Comments</h4>
 
             <ul>
@@ -40,7 +42,7 @@ function ProjectComments({ project }) {
                             <p>{comment.displayName}</p>
                         </div>
                         <div className='comment-date'>
-                            <p>{formatDistanceToNow(comment.createdAt.toDate(), {addSuffix: true})}</p>
+                            <p>{formatDistanceToNow(comment.createdAt.toDate(), { addSuffix: true })}</p>
                         </div>
                         <div className='comment-content'>
                             <p>{comment.content}</p>
@@ -58,7 +60,7 @@ function ProjectComments({ project }) {
                         value={newComment}
                     />
 
-                    <button className='btn'>Add comment</button>
+                    <button className={`btn ${mode}`}>Add comment</button>
                 </label>
             </form>
         </div>

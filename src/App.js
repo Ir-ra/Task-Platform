@@ -14,7 +14,6 @@ import OnlineUsers from './components/OnlineUsers';
 import { useTheme } from './hooks/useTheme';
 
 
-
 function App() {
   const { authIsReady, user } = useAuthContext()
   const {mode} = useTheme()
@@ -47,8 +46,11 @@ function App() {
               path='/signup' 
               element={user ? <Navigate to='/'/> : <Signup />} />
             </Routes>
+
           </div>
+          
           {user && <OnlineUsers/>}
+          
         </BrowserRouter>
       )}
     </div>

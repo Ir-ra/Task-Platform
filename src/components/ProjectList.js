@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
 import Avatar from './Avatar';
+import { useTheme } from '../hooks/useTheme';
 // styles
 import './ProjectList.css'
 
 function ProjectList({ projects }) {
-console.log(projects)
+    const { mode } = useTheme()
+    console.log(projects)
     return (
-        <div className='project-list'>
+        <div className={`project-list ${mode}`}>
             {/* in case there is no projects */}
             {projects.length === 0 && <p>No projects yet!</p>}
 
@@ -19,7 +21,7 @@ console.log(projects)
                         <ul>
                             {project.assignedUsersList.map(user => (
                                 <li key={user.photoURL}>
-                                    <Avatar src={user.photoURL} /> 
+                                    <Avatar src={user.photoURL} />
                                 </li>
                             ))}
                         </ul>

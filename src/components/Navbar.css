@@ -35,12 +35,13 @@
 
 .navbar .sidebar-links {
   display: inline-flex;
+  margin: 0 8px;
 }
 
 .navbar .theme-selector {
   display: inline-flex;
-  margin: 0 15px;
-}
+  margin: 0 15px 0 0;
+} 
 .mode-toggle img {
   width: 24px;
   height: 24px;
@@ -53,9 +54,15 @@
   }
 }
  /* dark mode */
-.navbar.dark span {
-  color: #fff;
+.navbar.dark span  {
+  color: var(--bg-color);
+}
+.navbar.dark a  {
+  color: var(--bg-color);
 }
 .navbar.dark .logo img {
   filter: invert(50%);
+}
+.navbar.dark .sidebar-links img {
+  filter: invert(100%);
 }

@@ -4,7 +4,7 @@
 }
 .App .container{
   flex-grow: 1;
-  padding: 0 30px;
+  padding: 0 25px;
 }
 .App.dark{
   background: #333;

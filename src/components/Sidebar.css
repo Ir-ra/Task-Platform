@@ -51,7 +51,7 @@
 
     /* dark mode */
     .sidebar.dark {
-      background: rgb(84, 84, 84);
+      background: #545454;
     }
     .sidebar.dark .links a.active {
       background: var(--dark-color);

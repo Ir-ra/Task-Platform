@@ -1,12 +1,14 @@
 import Avatar from "../../components/Avatar";
 import { useFirestore } from '../../hooks/useFirestore';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../../hooks/useTheme';
 
 function ProjectSummary({ project }) {
     const { deleteDocument } = useFirestore('PROJECTs');
     const { user } = useAuthContext();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const { mode } = useTheme();
 
     const handleClick = (e) => {
         deleteDocument(project.id)
@@ -14,7 +16,7 @@ function ProjectSummary({ project }) {
     }
     return (
         <div>
-            <div className="project-summary">
+            <div className={`project-summary ${mode}`}>
                 <p>By {project.createdBy.displayName}</p>
                 <h2 className="project-title">{project.name}</h2>  {/*like project document fronm Create*/}
                 <p className="due-date">
@@ -36,7 +38,7 @@ function ProjectSummary({ project }) {
 
             </div>
             {user.uid === project.createdBy.id && (
-                <button className="btn" onClick={handleClick}>Mark as complete</button>
+                <button className={`btn ${mode}`} onClick={handleClick}>Mark as complete</button>
             )}
         </div>
     );

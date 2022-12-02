@@ -1,6 +1,7 @@
 import './Signup.css'
 import { useState } from 'react';
-import { useSignUp } from '../../hooks/useSignUp'
+import { useSignUp } from '../../hooks/useSignUp';
+import { useTheme } from '../../hooks/useTheme';
 
 function Signup() {
     const [email, setEmail] = useState('')
@@ -8,6 +9,7 @@ function Signup() {
     const [displayName, setDisplayName] = useState('')
     const [thumbnail, setThumbnail] = useState(null)
     const [thumbnailError, setThumbnailError] = useState(null)
+    const { mode } = useTheme()
 
     //Витягаємо те що нам потрібно з useSignUp (це те що там вертаємо)
     const { error, isPending, signUp } = useSignUp()
@@ -43,7 +45,7 @@ function Signup() {
 
     return (
         <div>
-            <form className='auth-form' onSubmit={handleSubmit}>
+            <form className={`auth-form ${mode}`} onSubmit={handleSubmit}>
                 <h2>Sign Up</h2>
 
                 <label>
@@ -86,8 +88,8 @@ function Signup() {
                     {thumbnailError && <div className='error'>{thumbnailError}</div>}
                 </label>
 
-                {!isPending && <button className='btn'>Sign Up</button>}
-                {isPending && <button className='btn' disabled>...</button>}
+                {!isPending && <button className={`btn ${mode}`}>Sign Up</button>}
+                {isPending && <button className={`btn ${mode}`} disabled>...</button>}
                 {error && <div className='error'>{error}</div>}
             </form>
         </div>

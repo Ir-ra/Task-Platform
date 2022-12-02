@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import ProjectList from '../../components/ProjectList';
-import { useCollection } from '../../hooks/useCollection'
-import { useAuthContext } from '../../hooks/useAuthContext'
+import { useCollection } from '../../hooks/useCollection';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useTheme } from '../../hooks/useTheme';
 
 // styles
 import './DashBoard.css'
@@ -11,6 +12,7 @@ function DashBoard() {
     const { user } = useAuthContext()
     const { documents, error } = useCollection('PROJECTs')
     const [currentFilter, setCurrentFilter] = useState('all')
+    const { mode } = useTheme()
 
     const changeFilter = (newFilter) => {
         setCurrentFilter(newFilter)
@@ -41,7 +43,7 @@ function DashBoard() {
 
     return (
         <div>
-            <h2 className='page-title'>DashBoard</h2>
+            <h2 className={`page-title ${mode}`}>DashBoard</h2>
             {error && <p className='error'>{error}</p>}
             {documents && (
                 <ProjectFilter

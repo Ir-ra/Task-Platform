@@ -6,3 +6,11 @@
     box-shadow: 3px 3px 5px rgba(0,0,0,0.05);
     background: #fff;
   }
+
+  .auth-form.dark {
+    background: var(--bgDarkMode-color);
+  }
+
+  .auth-form.dark span , textarea {
+    color:#fff;
+  }

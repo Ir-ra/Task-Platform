@@ -38,7 +38,7 @@
 
      /* dark mode */
      .user-list.dark {
-      background: rgb(84, 84, 84);
+      background: #545454;
      }
      .user-list.dark h2  {
       color:#fff;

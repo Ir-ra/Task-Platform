@@ -1,5 +1,6 @@
 import { useLogIn } from '../../hooks/useLogIn'
 import { useState } from 'react';
+import { useTheme } from '../../hooks/useTheme';
 import './Login.css'  //auth-form taking from signup.css -g
 
 function Login() {
@@ -7,6 +8,7 @@ function Login() {
     const [password, setPassword] = useState('')
 
     const { logIn, error, isPending } = useLogIn()
+    const { mode } = useTheme()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -14,7 +16,7 @@ function Login() {
     }
 
     return (
-        <form className='auth-form' onSubmit={handleSubmit}>
+        <form className={`auth-form ${mode}`} onSubmit={handleSubmit}>
             <h2>Login</h2>
 
             <label>
@@ -38,8 +40,8 @@ function Login() {
             </label>
 
             {error && <div className='error'>{error}</div>}
-            {!isPending && <button className='btn'>Login</button>}
-            {isPending && <button className='btn' disabled>...</button>}
+            {!isPending && <button className={`btn ${mode}`}>Login</button>}
+            {isPending && <button className={`btn ${mode}`} disabled>...</button>}
         </form>
     );
 }

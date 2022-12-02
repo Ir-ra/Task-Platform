@@ -1,8 +1,6 @@
 .project-filter {
   margin: 30px auto;
   display: flex;
-  /* flex-direction: row;
-  flex-wrap: wrap; */
 }
 .project-filter nav {
   display: flex;
@@ -35,4 +33,18 @@
   .project-filter {
     display: none;
   }
+}
+.page-title.dark {
+  color: #fff;
+}
+
+/* dark mode */
+.project-filter.dark nav {
+  background-color:var(--bgDarkMode-color);
+}
+.project-filter.dark button {
+  color:#fff;
+}
+.project-filter.dark button.active {
+  color: #000000;
 }

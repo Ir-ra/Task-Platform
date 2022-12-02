@@ -37,7 +37,7 @@
   .project-summary + .btn {
     margin-top: 20px;
   }
-
+  
   /*project comments*/
   .project-comments label {
     margin-bottom: 0px;
@@ -45,6 +45,9 @@
   .project-comments textarea {
     min-height: 40px;
     font-size: 1.5em;
+  }
+  .project-comments .btn {
+    margin-bottom: 20px;
   }
   
   /* comment list */
@@ -77,4 +80,29 @@
 .comment-content {
   color: var(--text-color);
   font-size: 0.9em;
+}
+
+@media (max-width: 700px) {
+  .project-details {
+    grid-template-columns: repeat(auto-fit, 20rem);
+  }
+}
+
+/*dark mode*/
+.project-details.dark {
+  grid-template-columns: repeat(auto-fit, 20rem);
+}
+.project-summary.dark , .project-comments.dark li  {
+  background-color: var(--bgDarkMode-color);
+  color:#000000;
+}
+.project-summary.dark p , .project-comments.dark p {
+  color:#fff;
+}
+
+.project-summary.dark h4 {
+  color:#000000;
+}
+.project-comments.dark h4 {
+  color:var(--bg-color);
 }

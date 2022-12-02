@@ -42,3 +42,17 @@
     align-content: flex-end;
     color: var(--primary-color);
   }
+
+  /*dark mode*/
+  .project-list.dark a {
+    background-color: var(--bgDarkMode-color);
+  }
+  .project-list.dark .category {
+    color:#daebf6
+  }
+  .project-list.dark h4 {
+    color:#fffcfc;
+  }
+  .project-list.dark p {
+    color:#fffcfc;
+  }

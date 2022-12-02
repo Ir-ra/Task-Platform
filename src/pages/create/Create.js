@@ -6,6 +6,7 @@ import { timestamp } from '../../firebase/config';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useFirestore } from '../../hooks/useFirestore';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../../hooks/useTheme'
 
 const categories = [
     { value: 'development', label: 'Development' },
@@ -30,7 +31,7 @@ function Create() {
     const [assignedUsers, setAssignedUsers] = useState([])
     const [formError, setFormError] = useState(null)
 
-
+    const { mode } = useTheme()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -81,7 +82,6 @@ function Create() {
         if (!response.error) {
             navigate('/')
         }
-
     };
 
     //we are going to map throu documents an make new arr based on arr of users
@@ -94,10 +94,8 @@ function Create() {
         }
     }, [documents])
 
-
-
     return (
-        <div className='create-form'>
+        <div className={`create-form ${mode}`}>
             <h2 className='page-title'>Create a new project</h2>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -147,7 +145,7 @@ function Create() {
                     />
                 </label>
 
-                <button className='btn'>Add Project</button>
+                <button className={`btn ${mode}`}>Add Project</button>
                 {formError && <p className='error'>{formError}</p>}
             </form>
         </div>

@@ -14,15 +14,16 @@ function Navbar() {
     const { user } = useAuthContext()
     const { logOut, isPending } = useLogout()
     const { mode } = useTheme()
-    
+
     return (
         <div className={`navbar ${mode}`}>
             <ul>
                 <li className='logo'>
                     <img src={Triangle} alt='logo' />
-                    <span>The Platform</span>
+                    <span>Platform</span>
                 </li>
-                
+
+                <div><ThemeSelector /></div>
                 {!user && (
                     <>
                         <li><Link to='/login'>Login</Link></li>
@@ -32,21 +33,19 @@ function Navbar() {
 
                 {user && (
                     <>
-                    <div><ThemeSelector/></div>
-                    
-                    <div className='sidebar-links'>
-                            <NavLink  to='/'>
+                        <div className='sidebar-links'>
+                            <NavLink to='/'>
                                 <img src={DashboardIcon} alt='dashboard icon' />
                             </NavLink>
-                        
+
                             <NavLink to='/create'>
                                 <img src={AddIcon} alt='add icon' />
                             </NavLink>
                         </div>
 
                         <li>
-                            {!isPending && <button className='btn' onClick={logOut}>Logout</button>}
-                            {isPending && <button className='btn' disabled>Logging out...</button>}
+                            {!isPending && <button className={`btn ${mode}`} onClick={logOut}>Logout</button>}
+                            {isPending && <button className={`btn ${mode}`} disabled>Logging out...</button>}
                         </li>
                     </>
                 )}
