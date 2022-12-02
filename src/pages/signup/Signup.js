@@ -11,7 +11,6 @@ function Signup() {
     const [thumbnailError, setThumbnailError] = useState(null)
     const { mode } = useTheme()
 
-    //Витягаємо те що нам потрібно з useSignUp (це те що там вертаємо)
     const { error, isPending, signUp } = useSignUp()
 
     const handleSubmit = (e) => {
@@ -34,8 +33,8 @@ function Signup() {
             return
         }
         //checking the size
-        if (selected.size > 100000) {
-            setThumbnailError('Image file size must be less than 100kb')
+        if (selected.size > 180000) {
+            setThumbnailError('Image file size must be less than 180kb')
             return
         }
 

@@ -88,7 +88,7 @@ function Create() {
     useEffect(() => {
         if (documents) {
             const options = documents.map(user => {
-                return { value: user, label: user.displayName }  //value:user це і є весь обьект юзера
+                return { value: user, label: user.displayName } 
             })
             setUsers(options)
         }

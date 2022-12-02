@@ -24,7 +24,7 @@ export const useDocument = (collection, id) => {
             setError('Failed to get document')
         })
 
-        //Clean up f-n, to unsubscribe if weleave the page
+        //Clean up f-n, to unsubscribe if we leave the page
         //return f-n which fires whenever the component that uses this hook on mounts
         //if we go to a different page, its going to unmount and fire clean up f-n
         return () => unsubscribe()

@@ -5,7 +5,7 @@ import './ProjectDetails.css'
 import ProjectSummary from './ProjectSummary';
 
 function ProjectDetails() {
-    const { id } = useParams()  //бо path='/projects/:id' 
+    const { id } = useParams()  // path='/projects/:id' 
     const { document, error } = useDocument('PROJECTs', id)
 
     if (error) {

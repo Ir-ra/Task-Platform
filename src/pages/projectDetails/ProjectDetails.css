@@ -54,6 +54,9 @@
 .project-comments h4 {
   color: var(--heading-color);
 }
+.project-comments textarea {
+  color: #777;
+}
 .project-comments li {
   padding: 16px;
   border-radius: 4px;
@@ -105,4 +108,7 @@
 }
 .project-comments.dark h4 {
   color:var(--bg-color);
+}
+.project-comments.dark textarea {
+  color: #777;
 }

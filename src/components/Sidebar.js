@@ -9,7 +9,7 @@ import { useTheme } from '../hooks/useTheme';
 function Sidebar() {
 
     const {user} = useAuthContext()
-    // console.log(user) //here is displayMane
+
     const {mode} = useTheme()
 
     return (

@@ -3,10 +3,11 @@ import ProjectList from '../../components/ProjectList';
 import { useCollection } from '../../hooks/useCollection';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useTheme } from '../../hooks/useTheme';
+import ProjectFilter from './ProjectFilter';
 
 // styles
 import './DashBoard.css'
-import ProjectFilter from './ProjectFilter';
+
 
 function DashBoard() {
     const { user } = useAuthContext()
