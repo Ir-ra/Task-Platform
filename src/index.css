@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+html, body, #root {
+  height: 100%;
+}
+
 /* variables */
 :root {
   --heading-color: #444;
@@ -7,6 +11,7 @@
   --primary-color: #6598b9;
   --highlight-color: #ac4f6e;
   --bg-color: #f4f4f4;
+  --dark-color: #333;
 }
 
 /* base styles */
@@ -15,6 +20,7 @@ body {
   margin: 0;
   font-size: 1.1em;
   background: var(--bg-color);
+  color: #333;
 }
 ul, li, p, h1, h2, h3, h4 {
   margin: 0;
@@ -22,6 +28,9 @@ ul, li, p, h1, h2, h3, h4 {
 }
 ul {
   list-style-type: none;
+}
+span {
+  color: var(--text-color);
 }
 
 /* layout */

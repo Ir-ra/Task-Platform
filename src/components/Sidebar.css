@@ -7,6 +7,9 @@
     position: relative;
     color: #fff;
   }
+  .sidebar span {
+    color: #555;;
+  }
   .sidebar-content {
     position: fixed;
     width: inherit;
@@ -45,3 +48,18 @@
   .sidebar .links .active img {
     filter: invert(40%);
   }
+
+    /* dark mode */
+    .sidebar.dark {
+      background: rgb(84, 84, 84);
+    }
+    .sidebar.dark .links a.active {
+      background: var(--dark-color);
+      color:#fff
+    }
+    .sidebar.dark .links img {
+      filter: invert(70%);
+    }
+    .sidebar.dark span {
+      color: #fff;;
+    }

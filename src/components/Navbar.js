@@ -7,18 +7,22 @@ import { useLogout } from '../hooks/useLogout'
 import { NavLink } from 'react-router-dom';
 import DashboardIcon from '../assets/dashboard_icon.svg';
 import AddIcon from '../assets/add_icon.svg';
+import ThemeSelector from './ThemeSelector';
+import { useTheme } from '../hooks/useTheme';
 
 function Navbar() {
     const { user } = useAuthContext()
     const { logOut, isPending } = useLogout()
+    const { mode } = useTheme()
     
     return (
-        <div className='navbar'>
+        <div className={`navbar ${mode}`}>
             <ul>
                 <li className='logo'>
                     <img src={Triangle} alt='logo' />
                     <span>The Platform</span>
                 </li>
+                
                 {!user && (
                     <>
                         <li><Link to='/login'>Login</Link></li>
@@ -28,6 +32,8 @@ function Navbar() {
 
                 {user && (
                     <>
+                    <div><ThemeSelector/></div>
+                    
                     <div className='sidebar-links'>
                             <NavLink  to='/'>
                                 <img src={DashboardIcon} alt='dashboard icon' />

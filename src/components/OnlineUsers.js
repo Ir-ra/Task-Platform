@@ -2,12 +2,15 @@ import './OnlineUsers.css';
 
 import { useCollection } from '../hooks/useCollection';
 import Avatar from './Avatar';
+import { useTheme } from '../hooks/useTheme';
 
 function OnlineUsers() {
     const { documents, error } = useCollection('USERs')
 // console.log(documents)
+const {mode} = useTheme()
+
     return (
-        <div className='user-list'>
+        <div className={`user-list ${mode}`}>
             <h2>All users</h2>
             {error && <div className='error'>{error}</div>}
             {documents && documents.map(user => (

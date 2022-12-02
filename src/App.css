@@ -1,7 +1,11 @@
 .App {
   display: flex;
+  min-height: 100%;
 }
 .App .container{
   flex-grow: 1;
   padding: 0 30px;
+}
+.App.dark{
+  background: #333;
 }

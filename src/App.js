@@ -11,13 +11,16 @@ import Sidebar from './components/Sidebar';
 import { useAuthContext } from './hooks/useAuthContext';
 import { BrowserRouter } from 'react-router-dom'
 import OnlineUsers from './components/OnlineUsers';
+import { useTheme } from './hooks/useTheme';
+
 
 
 function App() {
   const { authIsReady, user } = useAuthContext()
+  const {mode} = useTheme()
 
   return (
-    <div className="App">
+    <div className={`App ${mode}`}>
       {authIsReady && (
         <BrowserRouter>
           {user && <Sidebar />}

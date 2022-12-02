@@ -35,3 +35,14 @@
     border-radius: 50%;
     margin-top: 2px;
   }
+
+     /* dark mode */
+     .user-list.dark {
+      background: rgb(84, 84, 84);
+     }
+     .user-list.dark h2  {
+      color:#fff;
+     }
+     .user-list.dark span {
+      color:#fff;
+     }

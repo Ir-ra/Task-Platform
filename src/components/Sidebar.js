@@ -4,14 +4,16 @@ import AddIcon from '../assets/add_icon.svg';
 import { NavLink } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import Avatar from './Avatar';
+import { useTheme } from '../hooks/useTheme';
 
 function Sidebar() {
 
     const {user} = useAuthContext()
     // console.log(user) //here is displayMane
+    const {mode} = useTheme()
 
     return (
-        <div className='sidebar'>
+        <div className={`sidebar ${mode}`}>
             <div className='sidebar-content'>
                 <div className='user'>
                     <Avatar src={user.photoURL}/>
