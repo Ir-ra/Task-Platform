@@ -14,6 +14,7 @@ import OnlineUsers from './components/OnlineUsers';
 import { useTheme } from './hooks/useTheme';
 
 
+
 function App() {
   const { authIsReady, user } = useAuthContext()
   const {mode} = useTheme()
@@ -25,6 +26,7 @@ function App() {
           {user && <Sidebar />}
           <div className='container'>
             <Navbar />
+
             <Routes>
               <Route
                 path='/'
