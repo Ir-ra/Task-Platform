@@ -9,3 +9,8 @@
 .App.dark{
   background: #333;
 }
+@media (max-width:700px) {
+  .App .container {
+    padding: 0 10px;
+  }
+}

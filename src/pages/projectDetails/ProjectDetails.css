@@ -1,9 +1,11 @@
 .project-details {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 30rem);
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, 30rem); */
+    margin-top: auto;
+    display: flex;
     justify-content: center;
     align-items: start;
-    grid-gap: 60px;
+    grid-gap: 30px;
   }
   
   /* project summary */
@@ -87,14 +89,15 @@
 
 @media (max-width: 700px) {
   .project-details {
-    grid-template-columns: repeat(auto-fill, 20rem);
+    grid-template-columns: repeat(auto-fit, 18rem);
   }
 }
 
 /*dark mode*/
-.project-details.dark {
+
+/* .project-details.dark {
   grid-template-columns: repeat(auto-fit, 20rem);
-}
+} */
 .project-summary.dark , .project-comments.dark li  {
   background-color: var(--bgDarkMode-color);
   color:#000000;

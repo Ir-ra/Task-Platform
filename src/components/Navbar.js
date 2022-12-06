@@ -1,18 +1,15 @@
 import './Navbar.css'
-import Triangle from '../assets/triangle.svg'
-import { Link } from 'react-router-dom';
-import { useAuthContext } from '../hooks/useAuthContext'
-import { useLogout } from '../hooks/useLogout'
-
-import { NavLink } from 'react-router-dom';
-import DashboardIcon from '../assets/dashboard_icon.svg';
-import AddIcon from '../assets/add_icon.svg';
-import ThemeSelector from './ThemeSelector';
 import { useTheme } from '../hooks/useTheme';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { Link } from 'react-router-dom';
+import MobileNavigation from './burger/MobileNavigation';
+import Navigation from '../components/burger/Navigation'
+import Triangle from '../assets/triangle.svg'
+import ThemeSelector from '../components/ThemeSelector';
+
 
 function Navbar() {
     const { user } = useAuthContext()
-    const { logOut, isPending } = useLogout()
     const { mode } = useTheme()
 
     return (
@@ -20,10 +17,11 @@ function Navbar() {
             <ul>
                 <li className='logo'>
                     <img src={Triangle} alt='logo' />
-                    <span>Platform</span>
+                    <span>Task Platform</span>
                 </li>
 
                 <div><ThemeSelector /></div>
+
                 {!user && (
                     <>
                         <li><Link to='/login'>Login</Link></li>
@@ -33,20 +31,8 @@ function Navbar() {
 
                 {user && (
                     <>
-                        <div className='sidebar-links'>
-                            <NavLink to='/'>
-                                <img src={DashboardIcon} alt='dashboard icon' />
-                            </NavLink>
-
-                            <NavLink to='/create'>
-                                <img src={AddIcon} alt='add icon' />
-                            </NavLink>
-                        </div>
-
-                        <li>
-                            {!isPending && <button className={`btn ${mode}`} onClick={logOut}>Logout</button>}
-                            {isPending && <button className={`btn ${mode}`} disabled>Logging out...</button>}
-                        </li>
+                        <Navigation />
+                        <MobileNavigation />
                     </>
                 )}
 

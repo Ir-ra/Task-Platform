@@ -2,7 +2,6 @@
 
 html, body, #root {
   height: 100vh;
-  min-width: 50vh;
 }
 
 /* variables */
@@ -85,10 +84,14 @@ textarea {
   margin: 10px 0;
 }
 @media (max-width: 700px) {
-  .sidebar, .user-list {
+  .sidebar {
    display: none;
   }
+  .user-list {
+    display: none;
+   }
 }
+ 
 
 .btn.dark {
   background: var(--bgDarkMode-color);

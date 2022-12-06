@@ -1,9 +1,24 @@
 .project-list {
     margin-top: 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
   }
+  @media (max-width: 700px) {
+    .project-list{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      justify-items: center;
+      
+    }
+    .project-list a {
+      width: 200px;
+      height: 180px;
+    }
+  }
+
   .project-list a {
     background-color: #fff;
     padding: 16px;
