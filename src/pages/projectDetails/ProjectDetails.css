@@ -1,11 +1,18 @@
 .project-details {
-    /* display: grid;
-    grid-template-columns: repeat(auto-fit, 30rem); */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 30rem);
     margin-top: auto;
-    display: flex;
+    grid-gap: 60px;
     justify-content: center;
-    align-items: start;
-    grid-gap: 30px;
+   }
+  @media (max-width: 700px) {
+    .project-details{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: start;
+      grid-gap: 30px;
+    }
   }
   
   /* project summary */
