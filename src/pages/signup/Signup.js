@@ -33,8 +33,8 @@ function Signup() {
             return
         }
         //checking the size
-        if (selected.size > 180000) {
-            setThumbnailError('Image file size must be less than 180kb')
+        if (selected.size > 200000) {
+            setThumbnailError('Image file size must be less than 200kb')
             return
         }
 
@@ -78,9 +78,9 @@ function Signup() {
                 </label>
 
                 <label>
-                    <span>profile thumbnail:</span>
+                    <span>profile thumbnail:  <i>(must be less than 200kb)</i></span>
                     <input
-                        required
+                        // required
                         type='file'
                         onChange={handleFileChange}
                     />

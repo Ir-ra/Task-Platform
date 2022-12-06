@@ -37,22 +37,25 @@ const MobileNavigation = () => {
 
                                 <div>
                                     <NavLink to='/'>
-                                        <img src={DashboardIcon} alt='dashboard icon' />
                                         <p>Dashboard</p>
+                                        {/* <img src={DashboardIcon} alt='dashboard icon' /> */}
+                                        
                                     </NavLink>
                                 </div>
 
                                 <div>
                                     <NavLink to='/create'>
-                                        <img src={AddIcon} alt='add icon' />
                                         <p>Add project</p>
+                                        {/* <img src={AddIcon} alt='add icon' /> */}
+                                       
                                     </NavLink>
                                 </div>
 
                                 <div className='logOut'>
-                                    <AiOutlineLogout className='out' />
-                                    {!isPending && <Link onClick={logOut}><span>Logout</span></Link>}
-                                    {isPending && <Link disabled><span>Logging out...</span></Link>}
+                                    
+                                    {!isPending && <Link onClick={logOut}><p>Logout</p></Link>}
+                                    {isPending && <Link disabled><p>Logging out...</p></Link>}
+                                    {/* <AiOutlineLogout className='out' /> */}
                                 </div>
                             </div>
 

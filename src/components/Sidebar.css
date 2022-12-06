@@ -6,6 +6,7 @@
     box-sizing: border-box;
     position: relative;
     color: #fff;
+    transition: all 0.25s;
   }
   .sidebar span {
     color: #555;;
@@ -52,6 +53,7 @@
     /* dark mode */
     .sidebar.dark {
       background: #545454;
+      transition: all 0.25s;
     }
     .sidebar.dark .links a.active {
       background: var(--dark-color);
