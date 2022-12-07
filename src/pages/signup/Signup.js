@@ -2,6 +2,7 @@ import './Signup.css'
 import { useState } from 'react';
 import { useSignUp } from '../../hooks/useSignUp';
 import { useTheme } from '../../hooks/useTheme';
+import imageCompression from 'browser-image-compression';
 
 function Signup() {
     const [email, setEmail] = useState('')
@@ -9,37 +10,60 @@ function Signup() {
     const [displayName, setDisplayName] = useState('')
     const [thumbnail, setThumbnail] = useState(null)
     const [thumbnailError, setThumbnailError] = useState(null)
+    const [formError, setFormError] = useState(null)
     const { mode } = useTheme()
 
     const { error, isPending, signUp } = useSignUp()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        signUp(email, password, displayName, thumbnail)
+        if (!email || !password || !displayName || !thumbnail) {
+            setFormError('Please select a file 222')
+        } else {
+            signUp(email, password, displayName, thumbnail)
+        }
     }
 
     const handleFileChange = (e) => {
         setThumbnail(null)
         let selected = e.target.files[0]
-
-        //---making check for image
-        if (!selected) {
-            setThumbnailError('Please select a file')
-            return
-        }
-        //if the file does not include type:image
-        if (!selected.type.includes('image')) {
-            setThumbnailError('Selected file must be an image')
-            return
-        }
-        //checking the size
-        if (selected.size > 180000) {
-            setThumbnailError('Image file size must be less than 180kb')
-            return
+        console.log(selected)
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 200,
+            useWebWorker: true
         }
 
-        setThumbnailError(null)
-        setThumbnail(selected)
+        try {
+            console.log('selected instanceof Blob', selected instanceof Blob); // true
+            console.log(`selected size ${selected.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+            const compressedFile = imageCompression(selected, options);
+            console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+            console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+
+            //---making check for image
+            if (!selected) {
+                // setThumbnailError('Please select a file')
+                return
+            }
+            //if the file does not include type:image
+            if (!selected.type.includes('image')) {
+                setThumbnailError('Selected file must be an image')
+                return
+            }
+            //checking the size
+            // if (selected.size > 200000) {
+            //     setThumbnailError('Image file size must be less than 200kb')
+            //     return
+            // }
+
+            setThumbnailError(null)
+            setThumbnail(selected)
+
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     return (
@@ -85,6 +109,7 @@ function Signup() {
                         onChange={handleFileChange}
                     />
                     {thumbnailError && <div className='error'>{thumbnailError}</div>}
+                    {formError && <div className='error'>{formError}</div>}
                 </label>
 
                 {!isPending && <button className={`btn ${mode}`}>Sign Up</button>}
