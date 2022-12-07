@@ -24,46 +24,46 @@ function Signup() {
         }
     }
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         setThumbnail(null)
         let selected = e.target.files[0]
         console.log(selected)
-        const options = {
-            maxSizeMB: 1,
-            maxWidthOrHeight: 200,
-            useWebWorker: true
+
+        //---making check for image
+        if (!selected) {
+            // setThumbnailError('Please select a file')
+            return
+        }
+        //if the file does not include type:image
+        if (!selected.type.includes('image')) {
+            setThumbnailError('Selected file must be an image')
+            return
+        }
+        console.log('selected instanceof Blob', selected instanceof Blob); // true
+        console.log(`selected size ${selected.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+
+        if (selected.size > 200000) {
+
+            try {
+                const options = {
+                    maxSizeMB: 1,
+                    maxWidthOrHeight: 200,
+                    useWebWorker: true
+                }
+
+                const compressedFile = await imageCompression(selected, options);
+                selected = compressedFile;
+                console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+                console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+
+            } catch (error) {
+                console.log(error);
+                setThumbnailError('Image can not be compressed, please choose another image.')
+            }
         }
 
-        try {
-            console.log('selected instanceof Blob', selected instanceof Blob); // true
-            console.log(`selected size ${selected.size / 1024 / 1024} MB`); // smaller than maxSizeMB
-            const compressedFile = imageCompression(selected, options);
-            console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
-            console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
-
-            //---making check for image
-            if (!selected) {
-                // setThumbnailError('Please select a file')
-                return
-            }
-            //if the file does not include type:image
-            if (!selected.type.includes('image')) {
-                setThumbnailError('Selected file must be an image')
-                return
-            }
-            //checking the size
-            // if (selected.size > 200000) {
-            //     setThumbnailError('Image file size must be less than 200kb')
-            //     return
-            // }
-
-            setThumbnailError(null)
-            setThumbnail(selected)
-
-        } catch (error) {
-            console.log(error);
-        }
-
+        setThumbnailError(null)
+        setThumbnail(selected)
     }
 
     return (
