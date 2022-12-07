@@ -18,7 +18,7 @@ function Signup() {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (!email || !password || !displayName || !thumbnail) {
-            setFormError('Please select a file 222')
+            setFormError('One of the fields is empty')
         } else {
             signUp(email, password, displayName, thumbnail)
         }
@@ -36,7 +36,7 @@ function Signup() {
         }
         //if the file does not include type:image
         if (!selected.type.includes('image')) {
-            setThumbnailError('Selected file must be an image')
+            setThumbnailError('Please fix errors before submitting the form.')
             return
         }
         console.log('selected instanceof Blob', selected instanceof Blob); // true
