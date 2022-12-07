@@ -4,12 +4,12 @@ import 'firebase/auth';
 import 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDP-ckO3uZPDBJB141l72q2dVJWwsvu55I",
-  authDomain: "task-platform.firebaseapp.com",
-  projectId: "task-platform",
-  storageBucket: "task-platform.appspot.com",
-  messagingSenderId: "399111714118",
-  appId: "1:399111714118:web:57da9a48076ea9b66b6147"
+  apiKey: "AIzaSyAFpXcR8P3WxJKi2VSz6Ba5ncLHWKuOzCw",
+  authDomain: "the-chat-platform.firebaseapp.com",
+  projectId: "the-chat-platform",
+  storageBucket: "the-chat-platform.appspot.com",
+  messagingSenderId: "1098024740362",
+  appId: "1:1098024740362:web:81d31dd0beb602e86921f3"
 };
 
   //initialize firebase (цей метод підєднує до нашої Firebase backend)

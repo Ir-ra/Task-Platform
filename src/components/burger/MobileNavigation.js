@@ -4,11 +4,8 @@ import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useLogout } from '../../hooks/useLogout'
 import { NavLink } from 'react-router-dom';
-import DashboardIcon from '../../assets/dashboard_icon.svg';
-import AddIcon from '../../assets/add_icon.svg';
 import { useTheme } from '../../hooks/useTheme';
 import { CgMenuRound } from 'react-icons/cg';
-import { AiOutlineLogout } from 'react-icons/ai';
 import { CgCloseO } from 'react-icons/cg';
 import { useState } from 'react';
 

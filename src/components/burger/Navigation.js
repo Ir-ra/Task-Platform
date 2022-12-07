@@ -1,13 +1,6 @@
 import '../../components/Navbar.css'
-import Triangle from '../../assets/triangle.svg'
-import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useLogout } from '../../hooks/useLogout'
-
-import { NavLink } from 'react-router-dom';
-import DashboardIcon from '../../assets/dashboard_icon.svg';
-import AddIcon from '../../assets/add_icon.svg';
-import ThemeSelector from '../../components/ThemeSelector';
 import { useTheme } from '../../hooks/useTheme';
 
 
