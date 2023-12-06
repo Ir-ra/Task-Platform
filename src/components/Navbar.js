@@ -9,36 +9,38 @@ import ThemeSelector from '../components/ThemeSelector';
 
 
 function Navbar() {
-    const { user } = useAuthContext()
-    const { mode } = useTheme()
+  const { user } = useAuthContext()
+  const { mode } = useTheme()
 
-    return (
-        <div className={`navbar ${mode}`}>
-            <ul>
-                <li className='logo'>
-                    <img src={Triangle} alt='logo' />
-                    <span>Task Platform</span>
-                </li>
+  return (
+    <div className={`navbar ${mode}`}>
+      <ul>
+        <li className='logo'>
+          <Link to='/'>
+            <img src={Triangle} alt='logo' />
+            <span>Task Platform</span>
+          </Link>
+        </li>
 
-                <div><ThemeSelector /></div>
+        <ThemeSelector />
 
-                {!user && (
-                    <>
-                        <li><Link to='/login'>Login</Link></li>
-                        <li><Link to='/signup'>Signup</Link></li>
-                    </>
-                )}
+        {!user && (
+          <>
+            <li><Link to='/login'>Login</Link></li>
+            <li><Link to='/signup'>Signup</Link></li>
+          </>
+        )}
 
-                {user && (
-                    <>
-                        <Navigation />
-                        <MobileNavigation />
-                    </>
-                )}
+        {user && (
+          <>
+            <Navigation />
+            <MobileNavigation />
+          </>
+        )}
 
-            </ul>
-        </div>
-    );
+      </ul>
+    </div>
+  );
 }
 
 export default Navbar;

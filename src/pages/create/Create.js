@@ -19,7 +19,7 @@ function Create() {
     const navigate = useNavigate()
     const { documents } = useCollection('USERs')
     const { user } = useAuthContext()
-    //записуємо нову коллекцію, у яку будуть зберігатись проекти
+
     const { addDocument, response } = useFirestore('PROJECTs')
 
     const [users, setUsers] = useState([])
@@ -35,7 +35,6 @@ function Create() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        //we need to reset Error to null EVERY time we Submit
         setFormError(null)
 
         if (!category) {
@@ -47,7 +46,6 @@ function Create() {
             return
         }
 
-        //object which stored info about the user who is currently logged, the one who created this project
         const createdBy = {
             displayName: user.displayName,
             photoURL: user.photoURL,
@@ -62,7 +60,6 @@ function Create() {
             }
         })
 
-        //------making project document-------
         const project = {
             name,
             details,
@@ -73,10 +70,6 @@ function Create() {
             assignedUsersList
         }
 
-
-        // console.log(name, details, dueDate, category.value, assignedUsers)
-        // ====>>>>>    console.log(project)
-
         //adding project to FB
         await addDocument(project)
         if (!response.error) {
@@ -84,7 +77,6 @@ function Create() {
         }
     };
 
-    //we are going to map throu documents an make new arr based on arr of users
     useEffect(() => {
         if (documents) {
             const options = documents.map(user => {
@@ -141,7 +133,7 @@ function Create() {
                     <Select
                         onChange={(option) => setAssignedUsers(option)}
                         options={users}
-                        isMulti  //can select multiple users
+                        isMulti
                     />
                 </label>
 

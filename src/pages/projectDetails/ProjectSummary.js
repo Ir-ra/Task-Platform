@@ -18,7 +18,7 @@ function ProjectSummary({ project }) {
         <div>
             <div className={`project-summary ${mode}`}>
                 <p>By {project.createdBy.displayName}</p>
-                <h2 className="project-title">{project.name}</h2>  {/*like project document fronm Create*/}
+                <h2 className="project-title">{project.name}</h2>
                 <p className="due-date">
                     Project due by {project.dueDate.toDate().toDateString()}
                 </p>

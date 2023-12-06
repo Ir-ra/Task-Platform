@@ -3,14 +3,17 @@
   min-height: 100%;
   transition: all 0.25s;
 }
-.App .container{
+
+.App .container {
   flex-grow: 1;
   padding: 0 25px;
 }
-.App.dark{
+
+.App.dark {
   background: #333;
   transition: all 0.25s;
 }
+
 @media (max-width:700px) {
   .App .container {
     padding: 0 10px;

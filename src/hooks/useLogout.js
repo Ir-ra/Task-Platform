@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import {projectAuth, projectFirestore} from '../firebase/config'
+import { projectAuth, projectFirestore } from '../firebase/config'
 import { useAuthContext } from "./useAuthContext"
 
 export const useLogout = () => {
@@ -9,32 +9,27 @@ export const useLogout = () => {
 
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState(null)
-    const {dispatch, user} = useAuthContext()
+    const { dispatch, user } = useAuthContext()
 
     const logOut = async () => {
         setError(null)
         setIsPending(true)
 
-        //sign OUT user 
         try {
-            //(id user = id document)
-            //update online status:
-            const {uid} = user
-            await projectFirestore.collection('USERs').doc(uid).update({online: false})
+            const { uid } = user
+            await projectFirestore.collection('USERs').doc(uid).update({ online: false })
 
             await projectAuth.signOut()
 
-            //dispatcj logout action
-            dispatch({type: 'LOGOUT'})
+            dispatch({ type: 'LOGOUT' })
 
-            //update state 
-            if(!isCancelled){
+            if (!isCancelled) {
                 setIsPending(false)
-            setError(null)
+                setError(null)
             }
-            
+
         } catch (error) {
-            if(!isCancelled){
+            if (!isCancelled) {
                 console.log(error.message)
                 setError(error.message)
                 setIsPending(false)
@@ -42,10 +37,9 @@ export const useLogout = () => {
         }
     }
 
-    //CLEAN up function
-    useEffect(()=>{
+    useEffect(() => {
         return () => setIsCancelled(true)
-    },[])
+    }, [])
 
-    return {logOut, error, isPending}
+    return { logOut, error, isPending }
 }

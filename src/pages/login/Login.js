@@ -1,7 +1,8 @@
 import { useLogIn } from '../../hooks/useLogIn'
 import { useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
-import './Login.css'  //auth-form taking from signup.css -g
+import './Login.css'
+import { Loader } from '../../components/Loader';
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -41,7 +42,7 @@ function Login() {
 
             {error && <div className='error'>{error}</div>}
             {!isPending && <button className={`btn ${mode}`}>Login</button>}
-            {isPending && <button className={`btn ${mode}`} disabled>...</button>}
+            {isPending && <button className={`btn ${mode}`} disabled><Loader /></button>}
         </form>
     );
 }

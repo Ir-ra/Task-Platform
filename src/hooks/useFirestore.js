@@ -1,6 +1,6 @@
 //add, del, upd
-import { useEffect, useState, useReducer } from "react"
-import { projectFirestore, timestamp } from '../firebase/config' //для взаємодіїї з датабазою проекту
+import { useEffect, useState, useReducer } from "react";
+import { projectFirestore, timestamp } from '../firebase/config';;
 
 //response object
 let initialState = {

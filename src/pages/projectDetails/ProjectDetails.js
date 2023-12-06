@@ -3,6 +3,7 @@ import { useDocument } from '../../hooks/useDocument';
 import ProjectComments from './ProjectComments';
 import './ProjectDetails.css'
 import ProjectSummary from './ProjectSummary';
+import { Loader } from '../../components/Loader';
 
 function ProjectDetails() {
     const { id } = useParams()  // path='/projects/:id' 
@@ -11,8 +12,9 @@ function ProjectDetails() {
     if (error) {
         return <div className='error'>{error}</div>
     }
+
     if (!document) {
-        return <div className='loading'>Loading...</div>
+        return <div className='loading'><Loader /></div>
     }
 
     return (

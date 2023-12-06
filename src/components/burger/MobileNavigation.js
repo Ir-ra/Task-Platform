@@ -9,61 +9,52 @@ import { CgMenuRound } from 'react-icons/cg';
 import { CgCloseO } from 'react-icons/cg';
 import { useState } from 'react';
 
-
-
 const MobileNavigation = () => {
-    const { user } = useAuthContext()
-    const { logOut, isPending } = useLogout()
-    const { mode } = useTheme()
+  const { user } = useAuthContext()
+  const { logOut, isPending } = useLogout()
+  const { mode } = useTheme()
 
-    const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
 
-    const hamburgerOpenIcon = <CgMenuRound className='hamburger' />
-    const hamburgerCloseIcon = <CgCloseO className='hamburger' />
+  const hamburgerOpenIcon = <CgMenuRound className='hamburger' />
+  const hamburgerCloseIcon = <CgCloseO className='hamburger' />
 
-    return (
-        <div className={`mobile-navigation ${mode}`} onClick={() => setOpen(!open)}>
-           
-            {open ? hamburgerCloseIcon : hamburgerOpenIcon}
-            {open &&
-                <div className={`navbar ${mode}`}>
+  return (
+    <div className={`mobile-navigation ${mode}`} onClick={() => setOpen(!open)}>
 
-                    {user && (
-                        <>
-                            <div className='sidebar-links'>
+      {open ? hamburgerCloseIcon : hamburgerOpenIcon}
+      {open &&
+        <div className={`navbar ${mode}`}>
 
-                                <div>
-                                    <NavLink to='/'>
-                                        <p>Dashboard</p>
-                                        {/* <img src={DashboardIcon} alt='dashboard icon' /> */}
-                                        
-                                    </NavLink>
-                                </div>
+          {user && (
+            <>
+              <div className='sidebar-links'>
 
-                                <div>
-                                    <NavLink to='/create'>
-                                        <p>Add project</p>
-                                        {/* <img src={AddIcon} alt='add icon' /> */}
-                                       
-                                    </NavLink>
-                                </div>
-
-                                <div className='logOut'>
-                                    
-                                    {!isPending && <Link onClick={logOut}><p>Logout</p></Link>}
-                                    {isPending && <Link disabled><p>Logging out...</p></Link>}
-                                    {/* <AiOutlineLogout className='out' /> */}
-                                </div>
-                            </div>
-
-                        </>
-                    )}
-
-
+                <div>
+                  <NavLink to='/'>
+                    <p>Dashboard</p>
+                  </NavLink>
                 </div>
-            }
+
+                <div>
+                  <NavLink to='/create'>
+                    <p>Add project</p>
+                  </NavLink>
+                </div>
+
+                <div className='logOut'>
+                  {!isPending && <Link onClick={logOut}><p>Logout</p></Link>}
+                  {isPending && <Link disabled><p>Logging out...</p></Link>}
+                </div>
+              </div>
+
+            </>
+          )}
+
         </div>
-    );
+      }
+    </div>
+  );
 
 }
 

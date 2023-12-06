@@ -17,7 +17,7 @@ import { useTheme } from './hooks/useTheme';
 
 function App() {
   const { authIsReady, user } = useAuthContext()
-  const {mode} = useTheme()
+  const { mode } = useTheme()
 
   return (
     <div className={`App ${mode}`}>
@@ -30,29 +30,29 @@ function App() {
             <Routes>
               <Route
                 path='/'
-                element={user ? <DashBoard /> : <Navigate to='/login' />}/>
-              
-              <Route 
-                path='/create' 
+                element={user ? <DashBoard /> : <Navigate to='/login' />} />
+
+              <Route
+                path='/create'
                 element={user ? <Create /> : <Navigate to='/login' />} />
-              
-              <Route 
-              path='/login' 
-              element={user ? <Navigate to='/'/> : <Login />} />
-              
-              <Route 
-              path='/projects/:id' 
-              element={user ? <ProjectDetails /> : <Navigate to='/login' />} />
-              
-              <Route 
-              path='/signup' 
-              element={user ? <Navigate to='/'/> : <Signup />} />
+
+              <Route
+                path='/login'
+                element={user ? <Navigate to='/' /> : <Login />} />
+
+              <Route
+                path='/projects/:id'
+                element={user ? <ProjectDetails /> : <Navigate to='/login' />} />
+
+              <Route
+                path='/signup'
+                element={user ? <Navigate to='/' /> : <Signup />} />
             </Routes>
 
           </div>
-          
-          {user && <OnlineUsers/>}
-          
+
+          {user && <OnlineUsers />}
+
         </BrowserRouter>
       )}
     </div>

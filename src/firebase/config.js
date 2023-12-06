@@ -12,7 +12,7 @@ const firebaseConfig = {
   appId: "1:1098024740362:web:81d31dd0beb602e86921f3"
 };
 
-  //initialize firebase (цей метод підєднує до нашої Firebase backend)
+  //initialize firebase
   firebase.initializeApp(firebaseConfig)
 
   //init services
@@ -24,3 +24,4 @@ const firebaseConfig = {
   const timestamp = firebase.firestore.Timestamp
 
   export {projectFirestore, projectAuth, projectStorage, timestamp}
+  
