@@ -1,9 +1,9 @@
 ## Task Platform
 Implemented task platform with authentication & file uploads, database and storage.
-Added dark theme. Also implemented possibility to create new projects and add comments.
+Added dark theme. Also implemented possibility to create new projects, and filter through project affiliation.
 
 ## DEMO
-[DEMO LINK]([https://task-platform.netlify.app])
+[DEMO LINK](https://task-platform.netlify.app)
 
 ## Technologies
 Project is created with:
