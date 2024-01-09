@@ -1,6 +1,10 @@
 ## Task Platform
 Implemented task platform with authentication & file uploads, database and storage.
-Added dark theme. Also implemented possibility to create new projects, and filter through project affiliation.
+Added dark theme. Also implemented possibility of creating new projects, and filtering through project affiliation.
+
+To test the platform, you can use an already-registered user.
+login: test@mail.com
+password: test123
 
 ## DEMO
 [DEMO LINK](https://task-platform.netlify.app)
